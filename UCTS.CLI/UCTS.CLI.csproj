@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UCTS.Entities2\UCTS.Entities.csproj" />
     <ProjectReference Include="..\UCTS.Manager.BL\UCTS.Manager.BL.csproj" />
+    <ProjectReference Include="..\UCTS.Entities\UCTS.Entities.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />

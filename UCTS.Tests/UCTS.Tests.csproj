@@ -15,6 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UCTS.Manager.BL\UCTS.Manager.BL.csproj" />
-    <ProjectReference Include="..\UCTS.Entities2\UCTS.Entities.csproj" />
+    <ProjectReference Include="..\UCTS.Entities\UCTS.Entities.csproj" />
   </ItemGroup>
 </Project>
