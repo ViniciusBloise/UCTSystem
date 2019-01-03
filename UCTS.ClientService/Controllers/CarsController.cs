@@ -34,6 +34,18 @@ namespace UCTS.ClientService.Controllers
                 AverageCapacity = 0.42
             };
         }
+        // PATCH api/cars/car_name
+        [HttpPatch("{car_name}")]
+        public void Patch(string car_name, [FromBody] CarAttribsModel value)
+        {
 
+        }
+
+        // DELETE api/cars/car_name
+        [HttpDelete("{car_name}")]
+        public void Delete(string car_name)
+        {
+
+        }
     }
 }

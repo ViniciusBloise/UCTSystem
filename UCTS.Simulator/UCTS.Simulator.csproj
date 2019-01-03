@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UCTS.Manager.BL\UCTS.Manager.BL.csproj" />
+    <ProjectReference Include="..\UCTS.Entities\UCTS.Entities.csproj" />
+  </ItemGroup>
 </Project>
