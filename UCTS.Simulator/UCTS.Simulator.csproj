@@ -8,5 +8,11 @@
   <ItemGroup>
     <ProjectReference Include="..\UCTS.Manager.BL\UCTS.Manager.BL.csproj" />
     <ProjectReference Include="..\UCTS.Entities\UCTS.Entities.csproj" />
+    <ProjectReference Include="..\UCTS.ManagerService\UCTS.ManagerService.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
   </ItemGroup>
 </Project>

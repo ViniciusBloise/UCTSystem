@@ -6,6 +6,6 @@ namespace UCTS.Manager.BL
 {
     public interface IWorkingSpace
     {
-        void Initialise();
+        void Initialize();
     }
 }

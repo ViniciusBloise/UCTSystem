@@ -15,9 +15,9 @@ namespace UCTS.Simulator
         {
         }
 
-        public void Initialise()
+        public void Initialize()
         {
-            _WorkingSpace.Initialise();
+            _WorkingSpace.Initialize();
             _CLISimulators = new ConcurrentBag<IClientSimulator>();
 
         }

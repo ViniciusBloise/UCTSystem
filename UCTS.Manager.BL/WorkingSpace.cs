@@ -15,9 +15,9 @@ namespace UCTS.Manager.BL
 
         public static WorkingSpace Instance => lazy.Value;
 
-        public void Initialise()
+        public void Initialize()
         {
-            //Initialise CarPool and TravelPool
+            //Initialize CarPool and TravelPool
             CarPool = new ConcurrentDictionary<string, ICar>();
             TravelPool = new ConcurrentBag<ITravel>();
             AssignedTravels = new ConcurrentBag<IAssignedTravel>();

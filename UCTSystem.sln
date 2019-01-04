@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCTS.ClientService", "UCTS.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCTS.Simulator", "UCTS.Simulator\UCTS.Simulator.csproj", "{D1F85B58-0A4C-4725-9311-A55BDDDAA5A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCTS.ManagerService", "UCTS.ManagerService\UCTS.ManagerService.csproj", "{BE3B9BC2-A044-4C89-BC04-68729C78E972}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,5 +51,9 @@ Global
 		{D1F85B58-0A4C-4725-9311-A55BDDDAA5A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1F85B58-0A4C-4725-9311-A55BDDDAA5A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1F85B58-0A4C-4725-9311-A55BDDDAA5A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE3B9BC2-A044-4C89-BC04-68729C78E972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE3B9BC2-A044-4C89-BC04-68729C78E972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE3B9BC2-A044-4C89-BC04-68729C78E972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE3B9BC2-A044-4C89-BC04-68729C78E972}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
