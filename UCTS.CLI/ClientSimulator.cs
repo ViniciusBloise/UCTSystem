@@ -32,8 +32,18 @@ namespace UCTS.Simulator
             };
         }
 
-        public async void BindReceiver()
+        public async void BindReceivers()
         {
+            _connection.On<string, string>("carAdded", (sender, car_name) =>
+            {
+                var newMessage = $"{sender}: new car '{car_name}' added.";
+                Console.WriteLine(newMessage);
+            });
+            _connection.On<string, string>("carRemoved", (sender, car_name) =>
+            {
+                var newMessage = $"{sender}: car '{car_name}' removed.";
+                Console.WriteLine(newMessage);
+            });
             _connection.On<string, string>("messageReceived", (user, message) =>
             {
                 var newMessage = $"{user}: {message}";
@@ -49,6 +59,8 @@ namespace UCTS.Simulator
                 Console.WriteLine(ex.Message);
             }
         }
+
+
 
         public async void SendMessage(string user, string message)
         {

@@ -4,7 +4,7 @@ namespace UCTS.Simulator
     public interface IClientSimulator
     {
         void Initialize();
-        void BindReceiver();
+        void BindReceivers();
         void SendMessage(string user, string message);
     }
 }

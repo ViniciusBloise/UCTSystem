@@ -20,7 +20,7 @@ namespace UCTS.Simulator
             var user = Guid.NewGuid().ToString();
             _clientSim = new ClientSimulator(configuration);
             _clientSim.Initialize();
-            _clientSim.BindReceiver();
+            _clientSim.BindReceivers();
             _clientSim.SendMessage(user, "Test");
 
 
@@ -30,6 +30,8 @@ namespace UCTS.Simulator
             {
                 string msg = Console.ReadLine();
                 _clientSim.SendMessage(user, msg);
+                if (msg.Equals("quit"))
+                    break;
             }
         }
     }

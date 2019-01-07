@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SignalRWebPack.Hubs;
+using UCTS.ManagerService.Hubs;
 
 namespace UCTS.ManagerService
 {
@@ -37,7 +38,8 @@ namespace UCTS.ManagerService
             app.UseStaticFiles();
             app.UseSignalR(options =>
             {
-                options.MapHub<ChatHub>("/hub");
+                //options.MapHub<ChatHub>("/hub");
+                options.MapHub<RadioHub>("/hub");
             });
         }
     }
