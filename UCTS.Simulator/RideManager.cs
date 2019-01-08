@@ -7,7 +7,7 @@ namespace UCTS.Simulator
     public class RideManager
     {
         private IWorkingSpace _WorkingSpace { get => WorkingSpace.Instance; }
-        private ConcurrentBag<IClientSimulator> _CLISimulators { get; set; }
+        //private ConcurrentBag<IClientSimulator> _CLISimulators { get; set; }
         const int NUM_MAX_CLIENT_SIMULATORS = 4;
 
 
@@ -18,7 +18,7 @@ namespace UCTS.Simulator
         public void Initialize()
         {
             _WorkingSpace.Initialize();
-            _CLISimulators = new ConcurrentBag<IClientSimulator>();
+            //_CLISimulators = new ConcurrentBag<IClientSimulator>();
 
         }
 

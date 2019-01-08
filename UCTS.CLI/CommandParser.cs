@@ -4,10 +4,11 @@ using UCTS.Simulator;
 
 namespace UCTS.CLI
 {
-    public class CommandParser
+    public class CommandParser : ICommandParser
     {
         private readonly string RESERVED_WORDS = "newcar,removecar,report,set";
         private ICLICommands _commands;
+        private IPublisher _publisher;
         public CommandParser(ICLICommands iCLICommands)
         {
             _commands = iCLICommands;

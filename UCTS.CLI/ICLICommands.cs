@@ -15,4 +15,9 @@ namespace UCTS.Simulator
         // set<car_name> <attr> <val>: Set attribute <attr> of<car_name> to <val>
         Result Set(string car_name, string attr, string value);
     }
+
+    public interface IGetCommands
+    {
+        ICLICommands Commands { get; }
+    }
 }

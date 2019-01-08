@@ -5,6 +5,6 @@ namespace UCTS.Simulator
     {
         void Initialize();
         void BindReceivers();
-        void SendMessage(string user, string message);
+
     }
 }

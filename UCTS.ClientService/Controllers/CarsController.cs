@@ -17,6 +17,7 @@ namespace UCTS.ClientService.Controllers
         [HttpPost]
         public void Post([FromBody] NewCarModel value)
         {
+            Console.WriteLine(value);
         }
 
         // GET api/cars/car_name
@@ -38,14 +39,14 @@ namespace UCTS.ClientService.Controllers
         [HttpPatch("{car_name}")]
         public void Patch(string car_name, [FromBody] CarAttribsModel value)
         {
-
+            Console.WriteLine($"car_name = {car_name}, value={value}");
         }
 
         // DELETE api/cars/car_name
         [HttpDelete("{car_name}")]
         public void Delete(string car_name)
         {
-
+            Console.WriteLine(car_name);
         }
     }
 }
