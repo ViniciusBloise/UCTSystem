@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -27,13 +28,19 @@ namespace UCTS.ManagerService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddCors();
+            services.AddOptions();
             services.AddSignalR();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+            app.UseCors(config =>
+                 config.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseSignalR(options =>
@@ -41,6 +48,8 @@ namespace UCTS.ManagerService
                 //options.MapHub<ChatHub>("/hub");
                 options.MapHub<RadioHub>("/hub");
             });
+
+            app.UseMvc();
         }
     }
 }

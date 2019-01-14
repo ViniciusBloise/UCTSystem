@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.FileExtensions;
 using Microsoft.Extensions.Configuration.Json;
@@ -9,7 +10,7 @@ namespace UCTS.Simulator
     class Program
     {
         //static IClientSimulator _clientSim;
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -18,20 +19,24 @@ namespace UCTS.Simulator
             IConfigurationRoot configuration = builder.Build();
 
             var user = Guid.NewGuid().ToString();
-            //_clientSim = new ClientSimulator(configuration);
-            //_clientSim.Initialize();
-            //_clientSim.BindReceivers();
-            //_clientSim.SendMessage(user, "Test");
+            var clientSim = new ClientSim(configuration);
+            clientSim.Initialize();
+            await clientSim.BindReceivers();
+
+            clientSim.SendMessage(user, "Test");
 
 
             Console.WriteLine("Hello World!");
 
-            while(true)
+            ICarOperations carOps = clientSim.Operations;
+            while (true)
             {
                 string msg = Console.ReadLine();
                 //_clientSim.SendMessage(user, msg);
                 if (msg.Equals("quit"))
                     break;
+                clientSim.SendMessage(user, msg);
+                carOps.NewCarAsync("Private", msg);
             }
         }
     }

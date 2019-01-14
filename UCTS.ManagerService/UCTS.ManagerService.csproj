@@ -10,7 +10,7 @@
       <CustomCommands>
         <Command>
           <type>BeforeBuild</type>
-          <command>npm run release</command>
+          <command>npm run build</command>
           <workingdir>${ProjectDir}</workingdir>
         </Command>
       </CustomCommands>
@@ -29,5 +29,14 @@
     <Folder Include="src\" />
     <Folder Include="src\css\" />
     <Folder Include="Hubs\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UCTS.Entities\UCTS.Entities.csproj" />
+    <ProjectReference Include="..\UCTS.Manager.BL\UCTS.Manager.BL.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\index.html" />
   </ItemGroup>
 </Project>

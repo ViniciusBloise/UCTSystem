@@ -8,7 +8,7 @@ namespace UCTS.Simulator
 {
     public class ClientSimulator : IClientSimulator, IGetOperations, IGetCommands, IGetParser, IPublisher, IGetPublisher
     {
-        private static HubConnection _connection;
+        private HubConnection _connection;
         private IConfigurationRoot _configuration;
         private ICarOperations _operations;
         private ICLICommands _commands;
