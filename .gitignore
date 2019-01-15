@@ -39,3 +39,5 @@ Thumbs.db
 
 # dotCover
 *.dotCover
+/UCTS.ManagerService/node_modules
+/UCTS.ManagerService/src/index.js
