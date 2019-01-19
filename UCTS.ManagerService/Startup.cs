@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SignalRWebPack.Hubs;
 using UCTS.ManagerService.Hubs;
+using UCTS.ManagerService.Services;
 
 namespace UCTS.ManagerService
 {
@@ -31,18 +32,19 @@ namespace UCTS.ManagerService
             services.AddCors();
             services.AddOptions();
             services.AddSignalR();
+            services.AddSingleton<ICarsRepository, CarsRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-
             app.UseCors(config =>
                  config.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
             app.UseSignalR(options =>
             {
                 //options.MapHub<ChatHub>("/hub");

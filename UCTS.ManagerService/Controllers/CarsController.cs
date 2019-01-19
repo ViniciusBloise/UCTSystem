@@ -12,6 +12,9 @@ using UCTS.ManagerService.Services;
 
 namespace UCTS.ManagerService.Controllers
 {
+    [Route("api/[controller]")]
+    [Produces("application/json")]
+    [ApiController]
     public class CarsController : ControllerBase
     {
         private readonly IHubContext<RadioHub> _radioHubContext;
@@ -33,9 +36,39 @@ namespace UCTS.ManagerService.Controllers
             //    return BadRequest();
             //if (!ModelState.IsValid)
             //return BadRequest(ModelState);
-            //_radioHubContext.Clients.All.SendAsync("carAdded", sender, value.CarName);
-            //_radioHub?.AddCar("sender", value.CarName);
+            _radioHubContext.Clients.All.SendAsync("carAdded", "Server", value.CarName);
+            
             Console.WriteLine(value);
+        }
+      
+
+        // GET api/cars/car_name
+        [HttpGet("{car_name}")]
+        public ActionResult<ICarReport> Get(string car_name)
+        {
+            return new BusAndMiniBusCarReportModel()
+            {
+                CarName = "FirstCar",
+                CarType = "MiniBus",
+                TimeFromStart = "1h30",
+                PercTimeWastedOnWaiting = "3%",
+                TotalIncome = 1003.43M,
+                TotalNumberOfTravels = 21,
+                AverageCapacity = 0.42
+            };
+        }
+        // PATCH api/cars/car_name
+        [HttpPatch("{car_name}")]
+        public void Patch(string car_name, [FromBody] CarAttribsModel value)
+        {
+            Console.WriteLine($"car_name = {car_name}, value={value}");
+        }
+
+        // DELETE api/cars/car_name
+        [HttpDelete("{car_name}")]
+        public void Delete(string car_name)
+        {
+            Console.WriteLine(car_name);
         }
     }
 }

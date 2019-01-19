@@ -12,13 +12,15 @@ namespace UCTS.Simulator
 
         private IConfigurationRoot _configuration;
         private HubConnection _connection;
-        private ICarOperations _carOperations;
+        private IManagerOperations _carOperations;
+        private readonly string _sender;
 
-        public ICarOperations Operations => _carOperations;
+        public IManagerOperations Operations => _carOperations;
 
-        public ClientSim(IConfigurationRoot config)
+        public ClientSim(IConfigurationRoot config, string sender)
         {
             _configuration = config;
+            _sender = sender;
         }
 
         public void Initialize()
@@ -30,7 +32,7 @@ namespace UCTS.Simulator
             .WithUrl(strconn)
             .Build();
 
-            _carOperations = new CarOperations(cliconn);
+            _carOperations = new ManagerOperations(cliconn, _sender);
 
             _connection.Closed += async (error) =>
             {
@@ -44,6 +46,16 @@ namespace UCTS.Simulator
             _connection.On<string, string>("messageReceived", (user, message) =>
             {
                 var newMessage = $"{user}: {message}";
+                Console.WriteLine(newMessage);
+            });
+            _connection.On<string, string>("carAdded", (sender, car_name) =>
+            {
+                var newMessage = $"{sender}: new car '{car_name}' added.";
+                Console.WriteLine(newMessage);
+            });
+            _connection.On<string, string>("carRemoved", (sender, car_name) =>
+            {
+                var newMessage = $"{sender}: car '{car_name}' removed.";
                 Console.WriteLine(newMessage);
             });
 

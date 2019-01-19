@@ -1,19 +1,18 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCTS.CLI", "UCTS.CLI\UCTS.CLI.csproj", "{BAC72B2E-8E4D-42FA-81AC-59ABB4E54F2F}"
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCTS.CLI", "UCTS.CLI\UCTS.CLI.csproj", "{BAC72B2E-8E4D-42FA-81AC-59ABB4E54F2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCTS.Manager.BL", "UCTS.Manager.BL\UCTS.Manager.BL.csproj", "{F2181ABC-AB64-40CB-BEA2-1535DA657E2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCTS.Manager.BL", "UCTS.Manager.BL\UCTS.Manager.BL.csproj", "{F2181ABC-AB64-40CB-BEA2-1535DA657E2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCTS.Tests", "UCTS.Tests\UCTS.Tests.csproj", "{E4BE49B1-A0E3-4BC2-BF48-8E7C8136515F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCTS.Tests", "UCTS.Tests\UCTS.Tests.csproj", "{E4BE49B1-A0E3-4BC2-BF48-8E7C8136515F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCTS.Entities", "UCTS.Entities\UCTS.Entities.csproj", "{73EBE30A-F66A-4D10-96E6-30B64F90ACE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCTS.Entities", "UCTS.Entities\UCTS.Entities.csproj", "{73EBE30A-F66A-4D10-96E6-30B64F90ACE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCTS.ClientService", "UCTS.ClientService\UCTS.ClientService.csproj", "{95DA32FB-F05F-4D63-9C6B-36EE18D6392A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCTS.Simulator", "UCTS.Simulator\UCTS.Simulator.csproj", "{D1F85B58-0A4C-4725-9311-A55BDDDAA5A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCTS.Simulator", "UCTS.Simulator\UCTS.Simulator.csproj", "{D1F85B58-0A4C-4725-9311-A55BDDDAA5A7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCTS.ManagerService", "UCTS.ManagerService\UCTS.ManagerService.csproj", "{BE3B9BC2-A044-4C89-BC04-68729C78E972}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCTS.ManagerService", "UCTS.ManagerService\UCTS.ManagerService.csproj", "{BE3B9BC2-A044-4C89-BC04-68729C78E972}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +36,6 @@ Global
 		{73EBE30A-F66A-4D10-96E6-30B64F90ACE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73EBE30A-F66A-4D10-96E6-30B64F90ACE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73EBE30A-F66A-4D10-96E6-30B64F90ACE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{95DA32FB-F05F-4D63-9C6B-36EE18D6392A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95DA32FB-F05F-4D63-9C6B-36EE18D6392A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95DA32FB-F05F-4D63-9C6B-36EE18D6392A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95DA32FB-F05F-4D63-9C6B-36EE18D6392A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D1F85B58-0A4C-4725-9311-A55BDDDAA5A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D1F85B58-0A4C-4725-9311-A55BDDDAA5A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1F85B58-0A4C-4725-9311-A55BDDDAA5A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,5 +44,11 @@ Global
 		{BE3B9BC2-A044-4C89-BC04-68729C78E972}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE3B9BC2-A044-4C89-BC04-68729C78E972}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE3B9BC2-A044-4C89-BC04-68729C78E972}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09EFD9F4-2A50-4D84-A405-23025F47C690}
 	EndGlobalSection
 EndGlobal

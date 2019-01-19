@@ -19,7 +19,7 @@ namespace UCTS.Simulator
             IConfigurationRoot configuration = builder.Build();
 
             var user = Guid.NewGuid().ToString();
-            var clientSim = new ClientSim(configuration);
+            var clientSim = new ClientSim(configuration, user);
             clientSim.Initialize();
             await clientSim.BindReceivers();
 
@@ -28,7 +28,7 @@ namespace UCTS.Simulator
 
             Console.WriteLine("Hello World!");
 
-            ICarOperations carOps = clientSim.Operations;
+            IManagerOperations carOps = clientSim.Operations;
             while (true)
             {
                 string msg = Console.ReadLine();
@@ -36,7 +36,7 @@ namespace UCTS.Simulator
                 if (msg.Equals("quit"))
                     break;
                 clientSim.SendMessage(user, msg);
-                carOps.NewCarAsync("Private", msg);
+                carOps.NewCar("Private", msg);
             }
         }
     }
