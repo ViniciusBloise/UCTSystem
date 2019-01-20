@@ -45,7 +45,18 @@ namespace UCTS.Manager.BL
 
         public ITravel AskForTravel()
         {
-            var travel = _travelFactory.GetTravel(_car.CarType);
+            ITravel travel = _travelFactory.GetTravel(_car.CarType);
+            //Check some constraints
+            var carAttribs = _car as ICarBaseAttribs;
+            while(true)
+            {
+                if (carAttribs.Allowed_num_passengers >= travel.NumberOfPassengers)
+                    break;
+                travel = _travelFactory.GetTravel(_car.CarType);
+            }
+            //if avg speed is greater than max allowed speed, set it to max speed
+            if(travel.AverageSpeed > carAttribs.Allowed_max_speed)
+                travel.AverageSpeed = carAttribs.Allowed_max_speed;
 
             _rideStatistics = new RideStatistics()
             {
