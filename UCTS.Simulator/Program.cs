@@ -38,17 +38,23 @@ namespace UCTS.Simulator
                 var parts = msg.Split(" ");
                 if (parts.Length > 1)
                 {
-                    if (parts[0] == "remove")
-                        carOps.RemoveCar(parts[1]);
-                    else if (parts[0] == "report")
+                    switch (parts[0].ToLower())
                     {
-                        var report = await carOps.Report(parts[1]);
-                        Console.WriteLine($"Report: {report}");
-                    }
-                    else if (parts[0] == "newcar")
-                    {
-                        var type = (parts.Length > 2) ? parts[2] : "Private";
-                        carOps.NewCar(type, parts[1]);
+                        case "remove":
+                            carOps.RemoveCar(parts[1]);
+                            break;
+                        case "report":
+                            var report = await carOps.Report(parts[1]);
+                            Console.WriteLine($"Report: {report}");
+                            break;
+                        case "newcar":
+                            var type = (parts.Length > 2) ? parts[2] : "Private";
+                            carOps.NewCar(type, parts[1]);
+                            break;
+                        case "set":
+                            if (parts.Length >= 3)
+                                carOps.SetAttribute(parts[1], parts[2], parts[3]);
+                            break;
                     }
                 }
                 clientSim.SendMessage(user, msg);

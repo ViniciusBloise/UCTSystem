@@ -78,7 +78,24 @@ namespace UCTS.ManagerService.Controllers
         [HttpPatch("{car_name}")]
         public void Patch(string car_name, [FromBody] CarAttribsModel value)
         {
-            Console.WriteLine($"car_name = {car_name}, value={value}");
+            var car = _carsRepository.GetCar(car_name);
+            if (car == null)
+                return;
+            var mapOperation = car as IMapOperations;
+            var carOperation = mapOperation.Operation as ICarOperation;
+            //carOperation.SetAttribute()
+            var carAttribType = typeof(CarAttribsModel);
+            var props = carAttribType.GetProperties();
+            foreach(var prop in props)
+            {
+                var item = prop.GetValue(value);
+                if (item != null)
+                    carOperation.SetAttribute(prop.Name, item.ToString());
+            }
+
+
+
+            Trace.WriteLine($"car_name = {car_name}, value={value}");
         }
 
         // DELETE api/cars/car_name
