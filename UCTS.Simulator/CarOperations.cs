@@ -25,14 +25,13 @@ namespace UCTS.Simulator
         public async void NewCar(string car_type, string car_name) =>
             await _caller.PostJsonAsync(new { CarType = car_type, CarName = car_name });
 
-
         public async void RemoveCar(string car_name) =>
             await _caller.AppendPathSegment(car_name).DeleteAsync();
 
         public async Task<string> Report(string car_name)
         {
-            dynamic output = await _caller.AppendPathSegment(car_name).GetJsonAsync();
-            return JsonConvert.SerializeObject(output);
+            dynamic output = await _caller.AppendPathSegment(car_name).GetStringAsync();
+            return output;
             //return Results.Ok<string>(output);
         }
 

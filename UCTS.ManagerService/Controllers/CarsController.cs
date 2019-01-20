@@ -50,24 +50,29 @@ namespace UCTS.ManagerService.Controllers
 
         // GET api/cars/car_name
         [HttpGet("{car_name}")]
-        public ActionResult<ICarReport> Get(string car_name)
+        public ActionResult<String> Get(string car_name)
         {
             var car = _carsRepository.GetCar(car_name);
+            if (car == null)
+                return BadRequest($"Car ({car_name}) not found");
             var mapOperation = car as IMapOperations;
             var carOperation = mapOperation.Operation as ICarOperation;
 
             var stats = carOperation.GetStatitics();
+
+            var report = JsonConvert.SerializeObject(stats);
             Trace.WriteLine($"Car {car_name} stats: ${JsonConvert.SerializeObject(stats)}");
-            return new BusAndMiniBusCarReportModel()
-            {
-                CarName = "FirstCar",
-                CarType = "MiniBus",
-                TimeFromStart = "1h30",
-                PercTimeWastedOnWaiting = "3%",
-                TotalIncome = 1003.43M,
-                TotalNumberOfTravels = 21,
-                AverageCapacity = 0.42
-            };
+            return Ok(report);
+            //return new BusAndMiniBusCarReportModel()
+            //{
+            //    CarName = "FirstCar",
+            //    CarType = "MiniBus",
+            //    TimeFromStart = "1h30",
+            //    PercTimeWastedOnWaiting = "3%",
+            //    TotalIncome = 1003.43M,
+            //    TotalNumberOfTravels = 21,
+            //    AverageCapacity = 0.42
+            //};
         }
         // PATCH api/cars/car_name
         [HttpPatch("{car_name}")]
