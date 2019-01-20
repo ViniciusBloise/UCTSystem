@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SignalRWebPack.Hubs;
+using UCTS.Manager.BL;
 using UCTS.ManagerService.Hubs;
 using UCTS.ManagerService.Services;
 
@@ -33,6 +34,7 @@ namespace UCTS.ManagerService
             services.AddOptions();
             services.AddSignalR();
             services.AddSingleton<ICarsRepository, CarsRepository>();
+            services.AddSingleton<ITravelFactory, TravelFactory>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

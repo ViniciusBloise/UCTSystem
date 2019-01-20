@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using UCTS.Entities;
+using UCTS.Manager.BL;
 using UCTS.ManagerService.Hubs;
 using UCTS.ManagerService.Models;
 using UCTS.ManagerService.Services;
@@ -19,23 +21,25 @@ namespace UCTS.ManagerService.Controllers
     {
         private readonly IHubContext<RadioHub> _radioHubContext;
         private readonly ICarsRepository _carsRepository;
+        private readonly ITravelFactory _travelFactory;
         //private readonly IRadioHub _radioHub;
 
-        public CarsController(ICarsRepository carsRepository, IHubContext<RadioHub> hubContext)
+        public CarsController(ICarsRepository carsRepository, ITravelFactory travelFactory, IHubContext<RadioHub> hubContext)
         {
             this._radioHubContext = hubContext;
             this._carsRepository = carsRepository;
-            //this._radioHub = hubContext as IRadioHub;
+            this._travelFactory = travelFactory;
         }
 
         // POST api/cars
         [HttpPost]
         public void Post([FromBody] NewCarModel value)
         {
-            //if (value == null)
-            //    return BadRequest();
-            //if (!ModelState.IsValid)
-            //return BadRequest(ModelState);
+            var car = _carsRepository.NewCar(value.CarType, value.CarName);
+            var mapOperation = car as IMapOperations;
+            mapOperation.Operation = new CarOperation(_travelFactory, car);
+            mapOperation.Operation.StartRunning();
+
             _radioHubContext.Clients.All.SendAsync("carAdded", "Server", value.CarName);
             
             Console.WriteLine(value);

@@ -13,11 +13,21 @@ namespace UCTS.ManagerService.Services
         {
         }
 
-        public void NewCar(string car_type, string car_name)
+        public ICar NewCar(string car_type, string car_name)
         {
-            Enum.TryParse<CarType>(car_type, out var enumCarType);
-            ICar car = CarFactory.Instance.GetCar(car_name, enumCarType);
-            _carPool.AddOrUpdate(car_name, car, (name, type) => car);
+            try
+            {
+                Enum.TryParse<CarType>(car_type, out var enumCarType); 
+                ICar car = CarFactory.Instance.GetCar(car_name, enumCarType);
+                
+                _carPool.AddOrUpdate(car_name, car, (name, type) => car);
+                return car;
+
+            }
+            catch (Exception)
+            {
+                throw new Exception("Cannot add a car");
+            }
         }
 
         public void RemoveCar(string car_name)

@@ -41,7 +41,7 @@ namespace UCTS.Manager.BL
             var rndGen = new Random(DateTime.Now.Millisecond);
             var carTypes = Enum.GetNames(typeof(CarType));
             Enum.TryParse<CarType>( carTypes[ rndGen.Next(carTypes.Length)], out var chosenType);
-            Trace.WriteLine($"Chosen carType = {chosenType}");
+            //Trace.WriteLine($"Chosen carType = {chosenType}");
             return GetTravel(chosenType);
         }
     }
