@@ -16,7 +16,7 @@ namespace UCTS.Manager.BL
         private volatile bool _toBeFinished = false;
 
         private int WaitingTimeGeneration() => new Random(Guid.NewGuid().GetHashCode()).Next(5, 60);
-        private decimal CalculateRideIncome(double distance, int noOfPassengers, decimal costPerKm) => noOfPassengers * new Decimal(distance) * costPerKm;
+        private decimal CalculateRideIncome(double distance, int noOfPassengers, double costPerKm) => Convert.ToDecimal(noOfPassengers * distance * costPerKm);
         private TimeSpan CalculateTime(double distance, double averageVelocity) => new TimeSpan(0, 0, Convert.ToInt32(distance / averageVelocity * 3600)); //km, km/h
         private Dictionary<string, string> _propertiesToUpdate = new Dictionary<string, string>();
 
@@ -33,22 +33,23 @@ namespace UCTS.Manager.BL
             {
                 CarName = _car.CarName,
                 CarType = _car.CarType.ToString("d"),
+
                 TotalIncome = 0.0M,
                 TotalNumberOfTravels = 0,
                 TimeFromStart = new TimeSpan(),
-                PercTimeWastedOnWaiting = 0.0,
                 TimeWaiting = new TimeSpan()
             };
         }
 
         public ITravel AskForTravel()
         {
-            var travel = _travelFactory.GetTravel();
+            var travel = _travelFactory.GetTravel( _car.CarType );
 
             _rideStatistics = new RideStatistics()
             {
                 CarName = _car.CarName,
                 CarType = _car.CarType.ToString("d"),
+                CostPerKm = (_car as ICarBaseAttribs).Cost_per_km,
                 NumberOfPassengers = travel.NumberOfPassengers,
                 TravelDistance = travel.TravelingDistance,
                 TimeFromStart = CalculateTime(travel.TravelingDistance, travel.AverageSpeed),
@@ -87,7 +88,7 @@ namespace UCTS.Manager.BL
             UpdateStatistics();
 
             if (!_toBeFinished)
-                Task.Run(() => StartRunning() );
+                Task.Run(() => StartRunning());
         }
 
         private void UpdateStatistics()
@@ -121,6 +122,11 @@ namespace UCTS.Manager.BL
         public void FinishOperation()
         {
             _toBeFinished = true;
+        }
+
+        public CarStatistics GetStatitics()
+        {
+            return _carStatistics;
         }
     }
 }

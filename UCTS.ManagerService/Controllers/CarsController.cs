@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
 using UCTS.Entities;
 using UCTS.Manager.BL;
 using UCTS.ManagerService.Hubs;
@@ -50,6 +52,12 @@ namespace UCTS.ManagerService.Controllers
         [HttpGet("{car_name}")]
         public ActionResult<ICarReport> Get(string car_name)
         {
+            var car = _carsRepository.GetCar(car_name);
+            var mapOperation = car as IMapOperations;
+            var carOperation = mapOperation.Operation as ICarOperation;
+
+            var stats = carOperation.GetStatitics();
+            Trace.WriteLine($"Car {car_name} stats: ${JsonConvert.SerializeObject(stats)}");
             return new BusAndMiniBusCarReportModel()
             {
                 CarName = "FirstCar",
@@ -72,6 +80,22 @@ namespace UCTS.ManagerService.Controllers
         [HttpDelete("{car_name}")]
         public void Delete(string car_name)
         {
+            try
+            {
+                var car = _carsRepository.GetCar(car_name);
+                var mapOperation = car as IMapOperations;
+                var carOperation = mapOperation.Operation as ICarOperation;
+                carOperation.FinishOperation();
+                _carsRepository.RemoveCar(car_name);
+
+                _radioHubContext.Clients.All.SendAsync("carRemoved", "Server", car_name);
+
+                Trace.WriteLine($"Car {car_name} removed.");
+            }
+            catch(Exception)
+            {
+                Trace.WriteLine($"Car {car_name} removal error.");
+            }
             Console.WriteLine(car_name);
         }
     }

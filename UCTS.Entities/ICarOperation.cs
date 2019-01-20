@@ -7,6 +7,7 @@ namespace UCTS.Entities
         void StopRunning();
         ITravel AskForTravel();
         void SetAttribute(String property, String value);
+        CarStatistics GetStatitics();
         void FinishOperation();
     }
 }

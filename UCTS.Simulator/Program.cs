@@ -35,8 +35,18 @@ namespace UCTS.Simulator
                 //_clientSim.SendMessage(user, msg);
                 if (msg.Equals("quit"))
                     break;
+                var parts = msg.Split(" ");
+                if(parts.Length > 1)
+                {
+                    if (parts[0] == "remove")
+                        carOps.RemoveCar(parts[1]);
+                    else if (parts[0] == "report")
+                        await carOps.Report(parts[1]);
+                    else if (parts[0] == "newcar")
+                        carOps.NewCar("Private", parts[1]);
+                }
                 clientSim.SendMessage(user, msg);
-                carOps.NewCar("Private", msg);
+
             }
         }
     }

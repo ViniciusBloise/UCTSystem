@@ -13,6 +13,18 @@ namespace UCTS.ManagerService.Services
         {
         }
 
+        public ICar GetCar(string car_name)
+        {
+            try
+            { 
+                return _carPool.GetOrAdd(car_name, null as ICar);
+            }
+            catch(Exception)
+            {
+                throw new Exception("Cannot get car.");
+            }
+        }
+
         public ICar NewCar(string car_type, string car_name)
         {
             try
@@ -32,13 +44,9 @@ namespace UCTS.ManagerService.Services
 
         public void RemoveCar(string car_name)
         {
-            throw new NotImplementedException();
+            _carPool.TryRemove(car_name, out ICar car);
         }
-
-        public void Report(string car_name)
-        {
-            throw new NotImplementedException();
-        }
+        
 
         public void Set(string car_name, string attr, string value)
         {

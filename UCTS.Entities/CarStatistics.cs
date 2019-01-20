@@ -10,7 +10,7 @@ namespace UCTS.Entities
         public string CarType { get; set; }
         public TimeSpan TimeFromStart { get; set; }
         public TimeSpan TimeWaiting { get; set; }
-        public double PercTimeWastedOnWaiting { get; set; }
+        public double PercTimeWastedOnWaiting => (TimeFromStart.TotalMinutes > 0) ? TimeWaiting.TotalMinutes / TimeFromStart.TotalMinutes * 100.0 : 0.0;
 
         public double TotalDistance { get; set; }
         public double AverageCapacity { get; set; }
